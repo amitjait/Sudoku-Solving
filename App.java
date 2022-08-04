@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 public class App{
 
-    // creating UI elements
+    // creating Java Swing UI elements
 
     private static JTextField[][] fields;
     private static JTextArea area;
@@ -34,8 +34,8 @@ public class App{
         //  Panel for Text Fields --------------------
 
         JPanel panel = new JPanel();
-        tab.addTab("Grid", panel);
-        panel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        tab.addTab("Sudoku Solver", panel);
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER));
         panel.setBackground(Color.lightGray);
         JPanel grid = new JPanel();
 

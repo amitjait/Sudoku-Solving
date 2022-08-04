@@ -1,13 +1,12 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-// import javax.swing.JFrame;
-// import javax.swing.JTabbedPane;
-// import javax.swing.JTextArea;
-// import javax.swing.JTextField;
+
 import java.awt.event.ActionListener;
 
 public class App{
+
+    // creating UI elements
 
     private static JTextField[][] fields;
     private static JTextArea area;
@@ -16,15 +15,23 @@ public class App{
     
     public static void main(String[] args) {
 
+        // defining main Sudoku board Array ----------
+
         int[][] board = new int[9][9];
+
+        // JFRAME ------------------------------
 
         frame = new JFrame("Sudoku Solver");
         JPanel root = new JPanel();
         frame.add(root);
 
+        // JTab -> Grid tab -------------------------
+
         tab = new JTabbedPane();
         root.add(tab);
         tab.setFont(tab.getFont().deriveFont(40f));
+
+        //  Panel for Text Fields --------------------
 
         JPanel panel = new JPanel();
         tab.addTab("Grid", panel);
@@ -34,6 +41,8 @@ public class App{
 
         panel.add(grid);
         grid.setLayout(new GridLayout(9, 9));
+
+        // Initialising textFields ---------------------
 
         fields = new JTextField[9][9];
 
@@ -49,33 +58,22 @@ public class App{
             }
         }
 
-        
-        // for(int row=0; row<9; row++){
-        //     for(int column =0; column<9; column++){
-        //         String fieldText = fields[row][column].getText();
-        //         if(fieldText == ""){
-        //             board[row][column] = 0;
-        //         }
-        //         else{
-        //             board[row][column] = Integer.parseInt(fieldText);
-        //         }
-        //     }
-        // }
+        // creating Sudoku class object to access this class finctions -----------------
 
         Sudoku Sudoku = new Sudoku();
 
-        // Sudoku.solve(board);
-
-        // Sudoku.printSudoku(board);
+        // defining solve button to perfomr action to solve Sudoku ------------------
 
         JButton solveButton = new JButton("Solve");
         solveButton.setFont(solveButton.getFont().deriveFont(60f));
         root.add(solveButton);
+
+        // adding action listner to solve button ----------------
+
         solveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    // int[][] board = new int[9][9];
                     for (int i = 0; i < 9; i++) {
                         for (int j = 0; j < 9; j++) {
                             if (fields[i][j].getText().length() > 1)
@@ -88,7 +86,6 @@ public class App{
                         }
                     }
                     Sudoku.solve(board);
-                    StringBuilder b = new StringBuilder();
                     for (int i = 0; i < 9; i++) {
                         for (int j = 0; j < 9; j++) {
                             String s = Integer.toString(board[i][j]);
@@ -102,9 +99,14 @@ public class App{
             }
         });
 
+        // Clear button ------------------
+
         JButton clearButton = new JButton("Clear");
         clearButton.setFont(clearButton.getFont().deriveFont(60f));
         root.add(clearButton);
+
+        // adding action listner to Clear button to clear board --------------------
+
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -120,10 +122,7 @@ public class App{
 
         
 
-        
-
-        // app.printSudoku(board);
-
+        // Setting up JFrame
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1500, 1000);
